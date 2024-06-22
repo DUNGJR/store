@@ -2,18 +2,17 @@
 
 import Button from "@/components/ui/button";
 import IconButton from "@/components/ui/icon-button";
-import { Color, Size } from "@/types";
+import { Color } from "@/types";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Plus, X } from "lucide-react";
 import { useState } from "react";
 import Filter from "./filter";
 
 interface MobileFiltersProps {
-  sizes: Size[];
   colors: Color[];
 }
 
-const MobileFilters: React.FC<MobileFiltersProps> = ({ sizes, colors }) => {
+const MobileFilters: React.FC<MobileFiltersProps> = ({ colors }) => {
   const [open, setOpen] = useState(false);
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(false);
@@ -21,7 +20,7 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({ sizes, colors }) => {
   return (
     <>
       <Button onClick={onOpen} className="flex items-center gap-x-2 lg:hidden">
-        Filters
+        Bộ lọc
         <Plus size={20}></Plus>
       </Button>
       <Dialog
@@ -41,8 +40,11 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({ sizes, colors }) => {
               </div>
 
               <div className="p-4">
-                <Filter valueKey="sizeId" name="Sizes" data={sizes}></Filter>
-                <Filter valueKey="colorId" name="Colors" data={colors}></Filter>
+                <Filter
+                  valueKey="colorId"
+                  name="Màu sắc"
+                  data={colors}
+                ></Filter>
               </div>
             </DialogPanel>
           </div>

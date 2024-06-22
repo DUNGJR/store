@@ -15,20 +15,20 @@ interface ProductCard {
 }
 
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
-  const cart = useCart()
-  const previewModal = usePreviewModal()
+  const cart = useCart();
+  const previewModal = usePreviewModal();
   const router = useRouter();
   const handleClick = () => {
     router.push(`/product/${data?.id}`);
   };
   const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
-    event.stopPropagation()
-    previewModal.onOpen(data)
-  }
+    event.stopPropagation();
+    previewModal.onOpen(data);
+  };
   const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
-    event.stopPropagation()
-    cart.addItem(data)
-  }
+    event.stopPropagation();
+    cart.addItem(data);
+  };
   return (
     <div
       onClick={handleClick}

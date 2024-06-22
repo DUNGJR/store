@@ -8,32 +8,35 @@ interface CartStore {
   addItem: (data: Product) => void;
   removeItem: (id: string) => void;
   removeAll: () => void;
-};
+}
 
 const useCart = create(
-  persist<CartStore>((set, get) => ({
-    items: [],
-    addItem: (data: Product) => {
-      const currentItems = get().items;
-      const existingItems = currentItems.find((item) => item.id === data.id);
+  persist<CartStore>(
+    (set, get) => ({
+      items: [],
+      addItem: (data: Product) => {
+        const currentItems = get().items;
+        const existingItems = currentItems.find((item) => item.id === data.id);
 
-      if (existingItems) {
-        return toast("Item already in cart");
-      }
+        if (existingItems) {
+          return toast("Sản phẩm đã được thêm vào giỏ hàng");
+        }
 
-      set({items: [...get().items,data]})
-      toast.success("Item added to cart")
-    },
+        set({ items: [...get().items, data] });
+        toast.success("Thêm sản phẩm thành công");
+      },
 
-    removeItem: (id:string) => {
-      set({items: [...get().items.filter((item)=>item.id !== id)]})
-      toast.success("Item removed from the cart")
-    },
-    removeAll: () => set({items: []})
-  }),{
-    name: "cart-storage",
-    storage: createJSONStorage(()=> localStorage)
-  }
-));
+      removeItem: (id: string) => {
+        set({ items: [...get().items.filter((item) => item.id !== id)] });
+        toast.success("Xóa sản phẩm thành công");
+      },
+      removeAll: () => set({ items: [] }),
+    }),
+    {
+      name: "cart-storage",
+      storage: createJSONStorage(() => localStorage),
+    }
+  )
+);
 
 export default useCart;

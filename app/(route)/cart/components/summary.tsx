@@ -39,14 +39,18 @@ const Summary = () => {
 
   return (
     <div className="mt-16 rounded-lg bg-gray-50 px-4 py-16 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
-      <h2 className="text-lg font-medium text-gray-900">Order Summary</h2>
+      <h2 className="text-lg font-medium text-gray-900">Thông tin đặt hàng</h2>
       <div className="mt-6 space-x-4">
         <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-          <div className="text-base font-medium text-gray-900">Order total</div>
+          <div className="text-base font-medium text-gray-900">Tổng cộng</div>
         </div>
         <Currency value={totalPrice}></Currency>
       </div>
-      <Button disabled={items.length===0} onClick={onCheckout} className="w-full mt-6">
+      <Button
+        disabled={items.length === 0}
+        onClick={onCheckout}
+        className="w-full mt-6"
+      >
         Thanh toán
       </Button>
     </div>
